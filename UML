@@ -1,0 +1,71 @@
+@startuml
+
+Öğrenci --> (Kitap Bakma) : İstek
+Öğrenci --> (Kitap Alma) : İstek
+Öğrenci --> (Kitap Bırakma) : İstek
+KütüphaneG --> (Kitap Bakma) :İstek
+KütüphaneG --> (Kitap Alma) : İstek
+KütüphaneG --> (Kitap Bırakma) : İstek
+KütüphaneG --> (Sistem Kontrolü) : İstek
+
+
+@enduml
+
+@startuml
+
+actor Öğrenci
+actor KütüphaneG
+rectangle Sistem {
+Öğrenci -- (Kitap Bakma)
+(Kitap Bakma) .> (id) : Kitap id'si sorgulama
+(Kitap Bakma) .> (isim) : Kitap ismi sorgulama
+(isim) .> KütüphaneG : Cevap
+(id) .> KütüphaneG : Cevap
+(Kitap Alma) .> (id) : Kitap id'si sorgulama
+(Kitap Alma) .> (isim) : Kitap ismi sorgulama
+(isim) .> KütüphaneG : Cevap
+(id) .> KütüphaneG : Cevap
+(Kitap Bırakma) .> (id) : Kitap id'si sorgulama
+(Kitap Alma) .> (isim) : Kitap ismi sorgulama
+(isim) .> KütüphaneG : Cevap
+(id) .> KütüphaneG : Cevap
+KütüphaneG --> Öğrenci : Sonuç
+}
+
+
+@enduml
+@startuml
+
+actor Öğrenci
+actor KütüphaneG
+rectangle Sistem {
+Öğrenci -- (Kitap Bakma)
+(Kitap Bakma) .> (id) : Kitap id'si sorgulama
+(Kitap Bakma) .> (isim) : Kitap ismi sorgulama
+(Kitap Bakma) .> (id) : Kitap var ise
+(id) --> (isim)
+(Kitap Bakma) .> (id) : Kitap yok ise
+(id) --> (KütüphaneG)
+(KütüphaneG) --> (Öğrenci)
+(Kitap Bakma) .> (isim) : Kitap var ise
+(Kitap Bakma) .> (isim) : Kitap yok ise
+(isim) .> KütüphaneG : Cevap
+(id) .> KütüphaneG : Cevap
+(Kitap Alma) .> (id) : Kitap id'si sorgulama
+(Kitap Alma) .> (isim) : Kitap ismi sorgulama
+(Kitap Alma) .> (id) : Kitap var ise
+(id) --> (isim)
+(Kitap Alma) .> (id) : Kitap yok ise
+(id) --> (KütüphaneG)
+(KütüphaneG) --> (Öğrenci)
+(Kitap Alma) .> (isim) : Kitap var ise
+(Kitap Alma) .> (isim) : Kitap yok ise
+(isim) .> KütüphaneG : Cevap
+(id) .> KütüphaneG : Cevap
+(Kitap Bırakma) .> (id) : Kitap id'si sorgulama
+(id) .> KütüphaneG : Cevap
+KütüphaneG --> Öğrenci : Sonuç
+}
+
+
+@enduml
