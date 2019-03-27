@@ -1,0 +1,41 @@
+@startuml
+
+class Öðrenci {
+    String isim
+    String soyad
+    int öðrencino
+}
+
+class Sistem{
+    void kitap arama()
+    void kitap alma()
+    void kitap teslimi()
+}
+
+class kitaparama{
+    string kitapismi
+    string kitapid
+}
+class kitapalma{
+    int kitapid
+    string Öðrenci.isim
+    int öðrencino
+}
+
+class kitapbýrakma{
+    int kitapid
+    int öðrencino
+}
+kitapalma<|--|> Sistem :içerir
+kitaparama<|--|> Sistem :içerir
+kitapbýrakma<|--|> Sistem :içerir
+Sistem<|--|> KütüphaneGörevlisi :istek ve cevap
+
+class KütüphaneGörevlisi
+{
+int Görevliid
+}
+
+KütüphaneGörevlisi<|--|> Öðrenci :kitap isteði
+
+@enduml
