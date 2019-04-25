@@ -1,1 +1,27 @@
+@startuml
 
+skinparam componentStyle uml2
+ 
+title Abstract Factory Pattern
+ 
+class Client
+class AbstractFactory <<interface>>
+class AbstractKitapA <<interface>>
+class KitapA2
+class KitapA1
+class Kütüphane1
+class AbstractProductB <<interface>>
+class ProductB1
+
+ 
+AbstractFactory <-- Ogrenci
+Ogrenci --> Sistem
+AbstractFactory <|.. Kitap11
+AbstractFactory <|.. Kitap12
+Sistem <|.. Kitap1
+Sistem <|.. Kitap2
+KitapA1 <-- Kitap11
+KitapA2 <-- Kitap12
+
+
+@enduml
