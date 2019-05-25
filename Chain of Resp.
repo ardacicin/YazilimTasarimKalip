@@ -1,0 +1,92 @@
+
+class Sistem {
+public:
+    bool KitapAl = false;
+    bool KitapBırak = false;
+    bool KitapBul = false;
+};
+
+class SistemKontrol {
+
+protected:
+    SistemKontrol *kontrol;
+
+public:
+    virtual void check(Sistem *kitap) = 0;
+
+    void succeedWith(SistemKontrol *kontrol)
+    {
+        this->kontrol = kontrol;
+    }
+
+    void next(Sistem *kitap)
+    {
+        if (this->kontrol)
+        {
+            this->kontrol->check(kitap);
+        }
+    }
+
+};
+
+class KitapAl : public SistemKontrol {
+public:
+    void check(Sistem *kitap)
+    {
+        if (!kitap->KitapAl)
+        {
+           printf("kitap alınabilir");
+        }
+
+        this->next(kitap);
+    }
+};
+
+class KitapBırak : public SistemKontrol {
+public:
+    void check(Sistem *kitap)
+    {
+        if (!kitap->KitapBırak)
+        {
+           printf("Kitap Bırakıldı");
+        }
+
+        this->next(kitap);
+    }
+
+};
+
+class KitapBul : public SistemKontrol {
+public:
+    void check(Sistem *kitap)
+    {
+        if (!kitap->KitapBul)
+        {
+           printf("Kitap Bulundu");
+        }
+
+        this->next(kitap);
+    }
+};
+
+int main()
+{
+ 
+    KitapAl *kitapal = new KitapAl();
+    KitapBırak *kitapBırak = new KitapBırak();
+    KitapBul *kitapBul = new KitapBul();
+   
+    kitapal->succeedWith(kitapBırak);
+    kitapBırak->succeedWith(kitapBul);
+   
+    Sistem *kitap = new Sistem();
+
+    printf("Begin check.\n");
+
+    
+    kitapal->check(kitap);
+
+    printf("Bitti");
+
+    return 0;
+}
