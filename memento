@@ -1,0 +1,56 @@
+
+class Sistem
+{
+    public string KitapAl { get; set; }
+    public string KitapBırak  { get; set; }
+    public string KitapBul { get; set; }
+    public SistemMemento CreateMemento()
+    {
+        return new SistemMemento {
+             KitapAl = this.KitapAl
+            ,KitapBırak = this.KitapBırak
+            ,KitapBul = this.KitapBul
+        };
+    }
+    public void BindMemento(KisiMemento sistem)
+    {
+        this.KitapAl = sistem.KitapAl;
+        this.KitapBırak = sistem.KitapBırak;
+        this.KitapBul = sistem.KitapBul;
+    }
+}
+
+class KisiMemento
+{
+    public string KitapAl { get; set; }
+    public string KitapBırak { get; set; }
+    public int KitapBul { get; set; }
+}
+
+class KisiMemory
+{
+    public KisiMemento KisiKopya { get; set; }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+     
+        Sistem k = new Sistem
+        {
+            KitapAl = "Kitap Alındı",
+            KitapBırak = "Kitap Bırakıldı",
+            KitapBul = "Kitap Bulundu"
+        };
+        Console.WriteLine(k.Ad);
+       
+        KisiMemory km = new KisiMemory();
+        km.KisiKopya = k.CreateMemento();
+       
+        k.Ad = "Kitap Alındı";
+        Console.WriteLine(k.Ad);
+        k.BindMemento(km.KisiKopya);
+        Console.WriteLine(k.Ad);
+        Console.ReadKey();
+    }
+}
