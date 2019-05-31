@@ -1,0 +1,100 @@
+import java.util.HashMap; 
+import java.util.Map; 
+  
+  
+abstract class Sistem implements Sistem1
+{ 
+      
+    
+       
+    abstract void kitapal(); 
+	abstract void kitapbirak(); 
+	abstract void kitapara(); 
+       
+    public Object clone() 
+    { 
+        Object clone = null; 
+        try 
+        { 
+            clone = super.clone(); 
+        }  
+        catch (CloneNotSupportedException e)  
+        { 
+            e.printStackTrace(); 
+        } 
+        return clone; 
+    } 
+} 
+  
+class kitapal extends Sistem 
+{ 
+    public kitapal1()  
+    { 
+        this.SistemName = "kitapal"; 
+    } 
+   
+    @Override
+    void addSistem()  
+    { 
+        System.out.println("kitap alındı"); 
+    } 
+      
+} 
+  
+class kitapara extends Sistem{ 
+   
+    public kitapara1() 
+    { 
+        this.SistemName = "kitapara"; 
+    } 
+   
+    @Override
+    void addSistem()  
+    { 
+        System.out.println("Kitap arandı"); 
+    } 
+} 
+
+class kitapbirak extends Sistem{ 
+   
+    public kitapbirak1() 
+    { 
+        this.SistemName = "kitapbirak"; 
+    } 
+   
+    @Override
+    void addSistem()  
+    { 
+        System.out.println("Kitap bırakıldı"); 
+    } 
+} 
+   
+class SistemStore { 
+   
+    private static Map<String, Sistem> Sistem2 = new HashMap<String, Sistem>();  
+       
+    static 
+    { 
+        Sistem2.put("AL", new kitapal()); 
+        Sistem2.put("Bırak", new kitapbirak()); 
+		Sistem2.put("Bırak", new kitapara()); 
+    } 
+       
+    public static Sistem getSistem(String SistemName) 
+    { 
+        return (Sistem) SistemMap.get(SistemName).clone(); 
+    } 
+} 
+  
+  
+// Driver class 
+class Prototype 
+{ 
+    public static void main (String[] args) 
+    { 
+        SistemStore.getColor("blue").addSistem(); 
+        SistemStore.getColor("black").addSistem(); 
+        SistemStore.getColor("black").addSistem(); 
+        SistemStore.getColor("blue").addSistem(); 
+    } 
+} 
