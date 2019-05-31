@@ -1,0 +1,57 @@
+interface Ogrenci
+{ 
+   
+    public void kitapal(); 
+    public void kitapbirak(); 
+	public void kitapara(); 
+} 
+  
+class kitapal implements Ogrenci
+{ 
+  
+    public void kitapal() 
+    { 
+        System.out.println("Kitap alındı"); 
+    } 
+	 public void kitapbirak() 
+    { 
+        System.out.println("Kitap bırakıldı"); 
+    } 
+	 public void kitapara() 
+    { 
+        System.out.println("Kitap araması yapıldı"); 
+    } 
+} 
+  
+interface Gorevli
+{ 
+     public void sistemdearama(); 
+} 
+  
+class Sistem implements Gorevli
+{ 
+    public void sistemdeara() 
+    { 
+        System.out.println("İstek sistemde arandı"); 
+    } 
+} 
+  
+class Main 
+{ 
+    public static void main(String args[]) 
+    { 
+        Kitapal kitapal = new Kitapal(); 
+        Gorevli görevli = new Görevli(); 
+  
+        Gorevli Sistem = new Sistem(kitapal); 
+  
+        System.out.println("kitapal"); 
+        sparrow.kitapbirak(); 
+        sparrow.kitapara(); 
+  
+        System.out.println("Gorevli"); 
+        toyDuck.sistemdeara(); 
+  
+       
+    } 
+} 
